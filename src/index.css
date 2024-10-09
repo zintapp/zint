@@ -1,0 +1,48 @@
+html {
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+body {
+  overflow-y: hidden;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+}
+
+#app {
+  height: 100%;
+  width: 100%; 
+}
+
+.helpcontainer {
+  color: white;
+  text-align: left;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #38b2ac;
+  border-radius: 0.7rem;
+  padding: 10px;
+  background-color: black;
+  font-family: sans-serif;
+  overflow: scroll;
+  max-height: 95vh;
+  max-width: 95vw;
+}
+.dynamicerrorcontainer {
+  color: white;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #38b2ac;
+  border-radius: 0.7rem;
+  padding: 10px;
+  background-color: #38b2ac;
+  font-family: sans-serif;
+}

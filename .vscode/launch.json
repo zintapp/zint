@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+      {
+        "name": "Debug Main Process",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+        "program": "${workspaceRoot}/src/main_process/electron-start.js",
+        "protocol": "inspector"
+      },
+      {
+        "name": "Debug Renderer Process",
+        "type": "chrome",
+        "request": "launch",
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+        "runtimeArgs": [
+          "${workspaceRoot}/src/main_process/electron-start.js",
+          "--remote-debugging-port=9222"
+        ],
+        "webRoot": "${workspaceRoot}"
+      }
+    ]
+  }
