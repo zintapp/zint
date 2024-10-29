@@ -83,6 +83,11 @@
     "asar": true,
     "asarUnpack": [
       "node_modules/node-pty/**/*"
-    ]
+    ],
+    "mac": {
+      "icon": "zinticon.icns",
+      "category": "public.app-category.developer-tools",
+      "target": ["dmg", "zip"]
+    }
   }
 }
