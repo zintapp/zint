@@ -65,5 +65,24 @@
   },
   "config": {
     "forge": "./forge.config.js"
+  },
+  "build": {
+    "extraResources": [
+      {
+        "from": "extraResources",
+        "to": "extraResources"
+      }
+    ],
+    "files": [
+      ".webpack/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/node-pty/**/*"
+    ]
   }
 }
