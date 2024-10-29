@@ -2,7 +2,8 @@ const packagerConfig = {
   icon: "zinticon.icns",
   appBundleId: "app.zint.Zint",
   appCategoryType: "public.app-category.developer-tools",
-  appCopyright: "Copyright © Guillaume de Cagny"
+  appCopyright: "Copyright © Guillaume de Cagny",
+  extraResource: ["./extraResources"]
 }
 
 if (process.env.FORGE_NOTARIZE) {
@@ -23,9 +24,7 @@ if (process.env.FORGE_NOTARIZE) {
 module.exports = {
     packagerConfig,
     makers: [],
-    hooks: {
-      afterExtract: ['./build/copyExtraResources.js']
-    },
+    hooks: {},
     plugins: [
       {
         name: "@electron-forge/plugin-webpack",

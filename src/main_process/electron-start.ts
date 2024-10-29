@@ -22,6 +22,8 @@ const zintPath = path.join(process.env!.HOME!, '.zint');
 const webpackBasePath = MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY.split(path.sep).slice(0, -2).join(path.sep);
 const extraResourcesComponentPath = path.join(extraResourcesPath, 'components');
 
+// console.log({ zintPath, isPackaged: app.isPackaged, webpackBasePath, extraResourcesComponentPath })
+
 const config = new Store() as any; // typescript doesn't find the methods for Store
 
 let usedBoundIds: Record<string, boolean> = {};

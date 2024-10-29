@@ -40,7 +40,7 @@
     "electron": "electron-forge start",
     "package:macintel": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=x64",
     "package:macm1": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=arm64",
-    "testfullbuilder:macm1": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/NOPENOPE/osx-notarized/arm64 --arm64 --mac --publish never",
+    "testfullbuilder:macm1": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js --arm64 --mac --publish never",
     "fullbuilder:macm1": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/updated/osx-notarized/arm64 --arm64 --mac --publish always",
     "fullbuilder:macintel": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/updated/osx-notarized/intel --x64 --mac --publish always"
   },
