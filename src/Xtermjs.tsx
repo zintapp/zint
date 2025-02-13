@@ -37,7 +37,8 @@ export class TerminalComponent extends React.PureComponent<TerminalProps> {
         this.terminal = new Terminal({ 
             windowsMode: false,
             cols: 60,
-            rows: MAX_TERMINAL_ROWS
+            rows: MAX_TERMINAL_ROWS,
+            scrollback: 20000
         })
         /*this.webglAddon = new WebglAddon()
         this.webglAddon.onContextLoss(e => {
