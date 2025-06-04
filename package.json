@@ -36,13 +36,15 @@
     "webpack-dev-server": "^5.1.0"
   },
   "scripts": {
+    "clean": "rm -rf out .webpack extraResources dist internal_components/**/dist",
     "nodepty": "electron-rebuild --debug && electron-rebuild",
     "electron": "electron-forge start",
     "package:macintel": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=x64",
-    "package:macm1": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=arm64",
-    "testfullbuilder:macm1": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js --arm64 --mac --publish never",
-    "fullbuilder:macm1": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/updated/osx-notarized/arm64 --arm64 --mac --publish always",
-    "fullbuilder:macintel": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/updated/osx-notarized/intel --x64 --mac --publish always"
+    "package:applesilicon": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=arm64",
+    "testfullbuilder:applesilicon": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js --arm64 --mac --publish never",
+    "fullbuilder:applesilicon": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/updated/osx-notarized/arm64 --arm64 --mac --publish always",
+    "fullbuilder:macintel": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/updated/osx-notarized/intel --x64 --mac --publish always",
+    "testendtoendbuild:applesilicon": "./build_script.sh"
   },
   "dependencies": {
     "@react-rxjs/core": "^0.10.7",
