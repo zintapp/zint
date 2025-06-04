@@ -1,4 +1,6 @@
 #!/bin/zsh
+set -euo pipefail
+
 ZINT_DEV_FOLDER=$(readlink -f $(dirname $0))
 
 echo "Zint DEV FOLDER : $ZINT_DEV_FOLDER"
@@ -23,4 +25,8 @@ rm -rf ./arm64
 
 cd $ZINT_DEV_FOLDER
 
-yarn testfullbuilder:applesilicon
+if [[ "$1" == "--publish" ]]; then
+  yarn fullbuilderpublish:applesilicon
+elif [[ "$1" == "--no-publish" ]]; then
+  yarn fullbuilder:applesilicon
+fi

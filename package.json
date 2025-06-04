@@ -7,33 +7,33 @@
   "license": "all rights reserved",
   "private": true,
   "devDependencies": {
-    "@babel/core": "^7.17.10",
-    "@babel/plugin-transform-runtime": "^7.17.10",
-    "@babel/preset-env": "^7.17.10",
-    "@babel/preset-react": "^7.16.7",
-    "@electron-forge/cli": "^7.5.0",
-    "@electron-forge/maker-deb": "^7.5.0",
-    "@electron-forge/maker-rpm": "^7.5.0",
-    "@electron-forge/maker-zip": "^7.5.0",
-    "@electron-forge/plugin-webpack": "^7.5.0",
+    "@babel/core": "^7.27.4",
+    "@babel/plugin-transform-runtime": "^7.27.4",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/runtime": "^7.27.4",
+    "@electron-forge/cli": "^7.8.1",
+    "@electron-forge/maker-deb": "^7.8.1",
+    "@electron-forge/maker-rpm": "^7.8.1",
+    "@electron-forge/maker-zip": "^7.8.1",
+    "@electron-forge/plugin-webpack": "^7.8.1",
     "@types/react": "^18.3.11",
     "@types/uuid": "^10.0.0",
     "@vercel/webpack-asset-relocator-loader": "1.7.3",
-    "babel-loader": "^9.2.1",
+    "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
-    "electron": "^31.6.0",
-    "electron-builder": "^25.0.5",
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12",
     "electron-notarize": "^1.2.1",
-    "electron-rebuild": "^3.2.7",
-    "html-webpack-plugin": "^5.5.0",
+    "html-webpack-plugin": "^5.6.3",
     "json-loader": "^0.5.7",
-    "node-loader": "^2.0.0",
+    "node-loader": "^2.1.0",
     "style-loader": "^4.0.0",
-    "ts-loader": "^9.3.0",
-    "typescript": "^5.6.2",
-    "webpack": "^5.72.1",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0"
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   },
   "scripts": {
     "clean": "rm -rf out .webpack extraResources dist internal_components/**/dist",
@@ -41,29 +41,30 @@
     "electron": "electron-forge start",
     "package:macintel": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=x64",
     "package:applesilicon": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=arm64",
-    "testfullbuilder:applesilicon": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js --arm64 --mac --publish never",
-    "fullbuilder:applesilicon": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/updated/osx-notarized/arm64 --arm64 --mac --publish always",
-    "fullbuilder:macintel": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js -c.mac.publish.path /app/updated/osx-notarized/intel --x64 --mac --publish always",
-    "testendtoendbuild:applesilicon": "./build_script.sh"
+    "fullbuilder:applesilicon": "NODE_ENV=production electron-builder -c.extraMetadata.main .webpack/main/index.js --arm64 --mac --publish never",
+    "fullbuilderpublish:macintel": "BUILD_ARCH=x64 NODE_ENV=production electron-builder --mac --x64 --config electron-builder.config.js --publish always",
+    "fullbuilderpublish:applesilicon": "BUILD_ARCH=arm64 NODE_ENV=production electron-builder --mac --arm64 --config electron-builder.config.js --publish always",
+    "endtoendbuild:applesilicon": "./build_script.sh --no-publish",
+    "endtoendbuildpublish:applesilicon": "./build_script.sh --publish"
   },
   "dependencies": {
-    "@react-rxjs/core": "^0.10.7",
+    "@react-rxjs/core": "^0.10.8",
     "@react-rxjs/utils": "^0.9.5",
     "@xterm/addon-fit": "^0.10.0",
     "@xterm/addon-webgl": "^0.18.0",
     "@xterm/xterm": "^5.5.0",
     "cors": "^2.8.5",
-    "electron-store": "^10.0.0",
-    "electron-updater": "^6.3.4",
+    "electron-store": "^10.0.1",
+    "electron-updater": "^6.6.2",
     "emulate-tab": "^1.2.1",
-    "express": "^4.18.1",
-    "nan": "^2.20.0",
+    "express": "^5.1.0",
+    "nan": "^2.22.2",
     "node-pty": "0.10.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "request": "^2.88.2",
-    "rxjs": "^7.5.5",
-    "uuid": "^10.0.0"
+    "rxjs": "^7.8.2",
+    "uuid": "^11.1.0"
   },
   "config": {
     "forge": "./forge.config.js"
@@ -89,7 +90,10 @@
     "mac": {
       "icon": "zinticon.icns",
       "category": "public.app-category.developer-tools",
-      "target": ["dmg", "zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     }
   }
 }
