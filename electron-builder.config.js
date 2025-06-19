@@ -7,13 +7,29 @@ module.exports = async function () {
     extraMetadata: {
       main: ".webpack/main/index.js",
     },
+    extraResources: [
+      {
+        from: "extraResources",
+        to: "extraResources"
+      }
+    ],
+    files: [
+      ".webpack/**/*",
+      "!node_modules",
+      "!**/node_modules",
+      "package.json"
+    ],
+    directories: {
+      "buildResources": "assets"
+    },
+    asar: true,
+    asarUnpack: [
+      "node_modules/node-pty/**/*"
+    ],
     mac: {
-      target: [
-        {
-          target: "default",
-          arch: [arch],
-        },
-      ],
+      icon: "zinticon.icns",
+      category: "public.app-category.developer-tools",
+      target: ["dmg", "zip"],
       publish: [
         {
           provider: "s3",
