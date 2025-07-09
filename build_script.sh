@@ -5,6 +5,8 @@ ZINT_DEV_FOLDER=$(readlink -f $(dirname $0))
 
 echo "Zint DEV FOLDER : $ZINT_DEV_FOLDER"
 
+yarn clean
+
 yarn
 cd internal_components/default
 
