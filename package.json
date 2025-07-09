@@ -39,6 +39,8 @@
     "clean": "rm -rf out .webpack extraResources dist internal_components/**/dist",
     "nodepty": "electron-rebuild --debug && electron-rebuild",
     "electron": "electron-forge start",
+    "buildinternalcomponents": "yarn --cwd internal_components && yarn --cwd internal_components/default build",
+    "linkinternalcomponents": "rm -rf extraResources && mkdir -p extraResources/components && ln -s ../../internal_components/default/dist extraResources/components/default",
     "package:macintel": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=x64",
     "package:applesilicon": "electron-rebuild && NODE_ENV=production electron-forge package --platform=darwin --arch=arm64",
     "fullbuilder:applesilicon": "NODE_ENV=production electron-builder --config electron-builder.config.js --arm64 --mac --publish never",
