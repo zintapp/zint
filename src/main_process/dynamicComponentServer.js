@@ -9,9 +9,8 @@ const request = require('request');
 const path = require('path')
 const fs = require('fs/promises')
 
-export function start(componentPath, internalComponentPath, webpackBasePath) {
+export function start(componentPath, internalComponentPath, webpackBasePath, port) {
     const dynamicComponentServer = express();
-    const PORT = 32333;
 
     dynamicComponentServer.use(cors())
     
@@ -59,6 +58,6 @@ export function start(componentPath, internalComponentPath, webpackBasePath) {
     dynamicComponentServer.use('/internal', express.static(internalComponentPath))
     dynamicComponentServer.use('/', express.static(webpackBasePath))
 
-    dynamicComponentServer.listen(PORT, () => console.log(`Dynamic Component Server listening on port: ${PORT}`));
+    dynamicComponentServer.listen(port, () => console.log(`Dynamic Component Server listening on port: ${port}`));
 
 }

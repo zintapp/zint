@@ -22,6 +22,9 @@ const zintPath = path.join(process.env!.HOME!, '.zint');
 const webpackBasePath = MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY.split(path.sep).slice(0, -2).join(path.sep);
 const extraResourcesComponentPath = path.join(extraResourcesPath, 'components');
 
+const PACKAGED_COMPONENTS_PORT = 32333
+const DEVELOPMENT_COMPONENTS_PORT = 32334
+
 // console.log({ zintPath, isPackaged: app.isPackaged, webpackBasePath, extraResourcesComponentPath })
 
 const config = new Store() as any; // typescript doesn't find the methods for Store
@@ -133,7 +136,7 @@ function createWindow(): void {
     { urls: ['*://*/*'] },
     (details, callback) => {
       if (!app.isPackaged && details.url.startsWith('http://localhost:')) callback({});
-      else if (details.url.startsWith('http://localhost:32333/')) callback({});
+      else if (details.url.startsWith(`http://localhost:${PACKAGED_COMPONENTS_PORT}/`)) callback({});
       else {
         console.warn('refusing web request to', details.url);
         callback({ cancel: true });
@@ -267,7 +270,7 @@ ipcMain.on('startShell', (event, message) => {
 
 const dynamicComponentServer = require('./dynamicComponentServer');
 const componentPath = path.join(zintPath, 'components');
-dynamicComponentServer.start(componentPath, extraResourcesComponentPath, webpackBasePath);
+dynamicComponentServer.start(componentPath, extraResourcesComponentPath, webpackBasePath, app.isPackaged ? PACKAGED_COMPONENTS_PORT : DEVELOPMENT_COMPONENTS_PORT);
 
 /* code to request microphone permission
 (probably) needed if an iframe needs the microphone 
